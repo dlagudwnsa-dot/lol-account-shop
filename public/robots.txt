@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xn--bp2bs0ne3dj3ao4xing.shop/sitemap.xml
