@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Search, ChevronDown, Filter, Check } from 'lucide-react';
+import { Search, ChevronDown, Filter, Check, Save } from 'lucide-react';
 
 const tiers = [
   "아이언 (Iron)",
@@ -19,7 +19,16 @@ const QuickFinder: React.FC = () => {
   const [isTierOpen, setIsTierOpen] = useState(false);
   const [selectedTier, setSelectedTier] = useState<string | null>(null);
   const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0, width: 0 });
+  const [isSaved, setIsSaved] = useState(false); // Visual feedback for auto-save
   const triggerRef = useRef<HTMLDivElement>(null);
+
+  // Load saved selection on mount
+  useEffect(() => {
+    const savedTier = localStorage.getItem('lol-shop-tier-draft');
+    if (savedTier) {
+      setSelectedTier(savedTier);
+    }
+  }, []);
 
   const handleSearch = () => {
     window.open('https://xn--bp2bs0ne3dj3ao4xing.com/buy/all', '_blank');
@@ -40,6 +49,13 @@ const QuickFinder: React.FC = () => {
   
   const selectTier = (tier: string) => {
     setSelectedTier(tier);
+    // Auto-save to LocalStorage
+    localStorage.setItem('lol-shop-tier-draft', tier);
+    
+    // Show temporary "Saved" feedback
+    setIsSaved(true);
+    setTimeout(() => setIsSaved(false), 2000);
+    
     setIsTierOpen(false);
   };
 
@@ -59,8 +75,9 @@ const QuickFinder: React.FC = () => {
     <div className="relative z-30 mt-0 md:-mt-24 container mx-auto px-4 mb-16 md:mb-24">
       {/* Container: Added padding override for mobile to prevent clip-path cutting off content */}
       <div className="bg-[#091428]/95 backdrop-blur-xl border border-[#C8AA6E]/30 p-1 clip-path-hextech shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
-        <div className="bg-[#010A13] p-5 md:p-8 clip-path-hextech relative overflow-visible">
-          {/* Decorative background glow */}
+        {/* Changed overflow-visible to overflow-hidden to clip the decorative glow element that causes horizontal scroll */}
+        <div className="bg-[#010A13] p-5 md:p-8 clip-path-hextech relative overflow-hidden">
+          {/* Decorative background glow - This element was causing overflow with translate-x-1/2 */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-lol-gold/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
 
           <div className="flex items-center gap-3 mb-6 border-b border-[#1E2328] pb-4 relative z-10">
@@ -68,10 +85,19 @@ const QuickFinder: React.FC = () => {
             <h3 className="text-lg font-serif font-bold text-[#F0E6D2] tracking-widest uppercase">
               Quick Account Finder
             </h3>
-            <span className="text-xs text-gray-500 ml-auto hidden md:block flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-              실시간 매물 연동 중
-            </span>
+            <div className="ml-auto flex items-center gap-4">
+               {/* Auto-save Indicator */}
+               {isSaved && (
+                 <span className="text-xs text-emerald-400 flex items-center gap-1 animate-fade-in-up">
+                   <Save className="w-3 h-3" />
+                   Selection Saved
+                 </span>
+               )}
+               <span className="text-xs text-gray-500 hidden md:flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                실시간 매물 연동 중
+              </span>
+            </div>
           </div>
 
           {/* Grid Layout: Strictly 1 column on mobile, 4 on desktop */}
