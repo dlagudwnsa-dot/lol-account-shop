@@ -89,7 +89,7 @@ const SupportPage: React.FC = () => {
 
           {/* Action Buttons */}
           <div className="mt-12 flex flex-col md:flex-row items-center justify-center gap-6">
-             <Button onClick={() => window.open('https://xn--bp2bs0ne3dj3ao4xing.com/buy/all', '_blank')} className="w-full md:w-auto min-w-[240px] py-4 bg-[#0AC8B9] text-black border-none hover:bg-[#08B0A3]">
+             <Button onClick={() => window.open('https://xn--bp2bs0ne3dj3ao4xing.com/accounts', '_blank')} className="w-full md:w-auto min-w-[240px] py-4 bg-[#0AC8B9] text-black border-none hover:bg-[#08B0A3]">
                <ArrowRight className="w-5 h-5 mr-2" />
                계정 보러가기
              </Button>

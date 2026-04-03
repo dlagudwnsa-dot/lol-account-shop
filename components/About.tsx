@@ -7,7 +7,7 @@ const About: React.FC = () => {
   const { navigateTo } = useNavigation();
 
   const handleMoveToShop = () => {
-    window.open('https://xn--bp2bs0ne3dj3ao4xing.com/buy/all', '_blank');
+    window.open('https://xn--bp2bs0ne3dj3ao4xing.com/accounts', '_blank');
   };
 
   const features = [

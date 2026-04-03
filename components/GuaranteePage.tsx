@@ -79,7 +79,7 @@ const GuaranteePage: React.FC = () => {
           </div>
 
           <div className="mt-12 text-center">
-             <Button onClick={() => window.open('https://xn--bp2bs0ne3dj3ao4xing.com/buy/all', '_blank')} className="bg-[#C8AA6E] text-black border-none hover:bg-[#D4B982]">
+             <Button onClick={() => window.open('https://xn--bp2bs0ne3dj3ao4xing.com/accounts', '_blank')} className="bg-[#C8AA6E] text-black border-none hover:bg-[#D4B982]">
                보증 계정 매물 확인하기
              </Button>
           </div>

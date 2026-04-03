@@ -7,7 +7,7 @@ const Hero: React.FC = () => {
   const { navigateTo } = useNavigation();
 
   const handleScrollToShop = () => {
-    window.open('https://xn--bp2bs0ne3dj3ao4xing.com/buy/all', '_blank');
+    window.open('https://xn--bp2bs0ne3dj3ao4xing.com/accounts', '_blank');
   };
 
   return (

@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
             <div>
               <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4">Service</h4>
               <ul className="space-y-2 text-xs text-gray-400">
-                <li><button onClick={() => handleLinkClick('https://xn--bp2bs0ne3dj3ao4xing.com/buy/all', 'external')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">계정 구매</button></li>
+                <li><button onClick={() => handleLinkClick('https://xn--bp2bs0ne3dj3ao4xing.com/accounts', 'external')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">계정 구매</button></li>
                 <li><button onClick={() => handleLinkClick('guarantee', 'page')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">보증 계정 안내</button></li>
                 <li><button onClick={() => handleLinkClick('private-trade', 'page')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">개인 거래 안내</button></li>
                 <li><button onClick={() => handleLinkClick('process-section', 'scroll')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">진행 절차</button></li>

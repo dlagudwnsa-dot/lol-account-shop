@@ -17,7 +17,7 @@ const Header: React.FC = () => {
 
   const navLinks: { name: string; page?: Page; url?: string; isExternal: boolean }[] = [
     { name: '홈', page: 'home', isExternal: false },
-    { name: '계정 목록', url: 'https://xn--bp2bs0ne3dj3ao4xing.com/buy/all', isExternal: true },
+    { name: '계정 목록', url: 'https://xn--bp2bs0ne3dj3ao4xing.com/accounts', isExternal: true },
     { name: '이용 가이드', page: 'guide', isExternal: false },
     { name: '고객센터', page: 'support', isExternal: false },
   ];
@@ -99,7 +99,7 @@ const Header: React.FC = () => {
           {/* Premium CTA Button */}
           <div className="hidden md:block">
             <button 
-               onClick={() => window.open('https://xn--bp2bs0ne3dj3ao4xing.com/buy/all', '_blank')}
+               onClick={() => window.open('https://xn--bp2bs0ne3dj3ao4xing.com/accounts', '_blank')}
                className="relative group px-1 py-1 overflow-hidden rounded-sm"
             >
               {/* Button Outer Glow/Border */}
@@ -141,7 +141,7 @@ const Header: React.FC = () => {
                 </button>
             ))}
             <button 
-              onClick={() => window.open('https://xn--bp2bs0ne3dj3ao4xing.com/buy/all', '_blank')}
+              onClick={() => window.open('https://xn--bp2bs0ne3dj3ao4xing.com/accounts', '_blank')}
               className="w-full mt-6 h-[56px] bg-gradient-to-r from-[#C8AA6E] to-[#785A28] text-[#010A13] font-black text-sm uppercase tracking-widest clip-path-hextech hover:brightness-110 transition-all shadow-lg shadow-lol-gold/20 flex items-center justify-center gap-2"
             >
               계정 보러가기 <ArrowRight className="w-4 h-4" />
