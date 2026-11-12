@@ -12,8 +12,8 @@ import GuaranteePage from './components/GuaranteePage';
 import PrivateTradePage from './components/PrivateTradePage';
 import { NavigationProvider, Page, getInitialPageFromUrl } from './NavigationContext';
 
-function App() {
-  const [currentPage, setCurrentPage] = useState<Page>(getInitialPageFromUrl());
+function App({ initialPage }: { initialPage?: Page }) {
+  const [currentPage, setCurrentPage] = useState<Page>(() => initialPage ?? getInitialPageFromUrl());
 
   return (
     <NavigationProvider currentPage={currentPage} setCurrentPage={setCurrentPage}>

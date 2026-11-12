@@ -22,9 +22,10 @@ export const NavigationContext = createContext<NavigationContextType>({
 export const useNavigation = () => useContext(NavigationContext);
 
 // SEO Configuration Map
-const pageMeta: Record<Page, { title: string; description: string; path: string }> = {
+export const siteOrigin = 'https://xn--bp2bs0ne3dj3ao4xing.shop';
+export const pageMeta: Record<Page, { title: string; description: string; path: string }> = {
   home: {
-    title: 'LoL Account Shop | 1대주 롤 계정 전문 거래소',
+    title: '롤어카운트샵 | 1대주 롤 계정 전문 거래소 | LoL Account Shop',
     description: 'LoL Account Shop은 1대주 롤 계정만 취급하는 안전한 계정 거래 사이트입니다. 결제 즉시 아이디·비밀번호·이메일 확인 가능. 보증 계정 제공.',
     path: '/'
   },
@@ -61,83 +62,34 @@ const pageMeta: Record<Page, { title: string; description: string; path: string 
 };
 
 export const getInitialPageFromUrl = (): Page => {
-  const path = window.location.pathname;
-  if (path === '/guide') return 'guide';
-  if (path === '/support') return 'support';
-  if (path === '/terms') return 'terms';
-  if (path === '/privacy') return 'privacy';
-  if (path === '/guarantee-account') return 'guarantee';
-  if (path === '/private-trade') return 'private-trade';
-  return 'home';
+  const path = window.location.pathname.replace(/\/+$/, '').replace(/\.html$/, '') || '/';
+  return (Object.keys(pageMeta) as Page[]).find(page => pageMeta[page].path === path) ?? 'home';
 };
 
 export const NavigationProvider: React.FC<{ children: React.ReactNode; currentPage: Page; setCurrentPage: (page: Page) => void }> = ({ children, currentPage, setCurrentPage }) => {
-  
-  const updateSEO = (page: Page) => {
-    const meta = pageMeta[page];
-    
-    // Update Document Title
-    document.title = meta.title;
-
-    // Update Meta Description
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', meta.description);
-    } else {
-      const newMeta = document.createElement('meta');
-      newMeta.name = 'description';
-      newMeta.content = meta.description;
-      document.head.appendChild(newMeta);
-    }
-
-    // Update URL (Push State)
-    if (window.location.pathname !== meta.path) {
-      window.history.pushState({ page }, '', meta.path);
-    }
-  };
-
   const navigateTo = (page: Page) => {
+    if (getInitialPageFromUrl() !== page) {
+      window.history.pushState({ page }, '', pageMeta[page].path);
+    }
     setCurrentPage(page);
     window.scrollTo(0, 0);
-    updateSEO(page);
   };
 
   useEffect(() => {
-    // Handle Browser Back/Forward Buttons
-    const handlePopState = (event: PopStateEvent) => {
-      // Determine page from state or URL
-      let page: Page = 'home';
-      
-      if (event.state && event.state.page) {
-         page = event.state.page;
-      } else {
-         page = getInitialPageFromUrl();
-      }
-
-      setCurrentPage(page);
-      
-      // Update Title/Meta without pushing state
-      const meta = pageMeta[page];
-      document.title = meta.title;
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) {
-        metaDesc.setAttribute('content', meta.description);
-      }
-    };
-
+    const handlePopState = () => setCurrentPage(getInitialPageFromUrl());
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, [setCurrentPage]);
 
-  // Initial SEO Setup
   useEffect(() => {
-    // Only push state if URL doesn't match current page (fix for initial load)
-    const meta = pageMeta[currentPage];
-    document.title = meta.title;
-    if (window.location.pathname !== meta.path) {
-       // Only push if we are correcting a path mismatch, though usually App.tsx init handles this.
-       // This block handles SEO title update on mount.
-    }
+    const { title, description, path } = pageMeta[currentPage];
+    const url = new URL(path, siteOrigin).href;
+    document.title = title;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', description);
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', url);
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', url);
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', description);
   }, [currentPage]);
 
   return (

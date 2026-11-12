@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigation, Page } from '../NavigationContext';
+import { useNavigation, pageMeta } from '../NavigationContext';
 import { MessageCircle, Check, Copy } from 'lucide-react';
 
 const Footer: React.FC = () => {
@@ -13,14 +13,9 @@ const Footer: React.FC = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleLinkClick = (destination: string, type: 'page' | 'scroll' | 'external') => {
+  const handleLinkClick = (destination: string, type: 'scroll' | 'external') => {
     if (type === 'external') {
       window.open(destination, '_blank');
-      return;
-    }
-
-    if (type === 'page') {
-      navigateTo(destination as Page);
       return;
     }
 
@@ -59,19 +54,19 @@ const Footer: React.FC = () => {
               <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4">Service</h4>
               <ul className="space-y-2 text-xs text-gray-400">
                 <li><button onClick={() => handleLinkClick('https://xn--bp2bs0ne3dj3ao4xing.com/accounts', 'external')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">계정 구매</button></li>
-                <li><button onClick={() => handleLinkClick('guarantee', 'page')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">보증 계정 안내</button></li>
-                <li><button onClick={() => handleLinkClick('private-trade', 'page')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">개인 거래 안내</button></li>
+                <li><a href={pageMeta['guarantee'].path} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">보증 계정 안내</a></li>
+                <li><a href={pageMeta['private-trade'].path} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">개인 거래 안내</a></li>
                 <li><button onClick={() => handleLinkClick('process-section', 'scroll')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">진행 절차</button></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4">Support</h4>
               <ul className="space-y-2 text-xs text-gray-400">
-                <li><button onClick={() => handleLinkClick('support', 'page')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">고객센터</button></li>
+                <li><a href={pageMeta['support'].path} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">고객센터</a></li>
                 <li><button onClick={() => handleLinkClick('faq-section', 'scroll')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">자주 묻는 질문</button></li>
-                <li><button onClick={() => handleLinkClick('guide', 'page')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">이용 가이드</button></li>
-                <li><button onClick={() => handleLinkClick('terms', 'page')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">이용 약관</button></li>
-                <li><button onClick={() => handleLinkClick('privacy', 'page')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">개인정보처리방침</button></li>
+                <li><a href={pageMeta['guide'].path} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">이용 가이드</a></li>
+                <li><a href={pageMeta['terms'].path} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">이용 약관</a></li>
+                <li><a href={pageMeta['privacy'].path} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">개인정보처리방침</a></li>
               </ul>
             </div>
           </div>
