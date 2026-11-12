@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <title>롤어카운트샵</title>
+  <polygon fill="#48505A" points="12,1 54,1 63,10 63,52 52,63 10,63 1,54 1,12"/>
+  <polygon fill="#091428" points="13,3 53,3 61,11 61,51 51,61 11,61 3,53 3,13"/>
+  <polygon fill="#C8AA6E" points="19,15 45,15 55,28 32,52 9,28"/>
+  <polygon fill="#E4C68B" points="19,15 25,15 21,27 9,27"/>
+  <polygon fill="#FFF0CB" points="27,15 37,15 41,27 23,27"/>
+  <polygon fill="#DBB879" points="39,15 45,15 55,27 43,27"/>
+  <polygon fill="#B28B50" points="10,29 21,29 30,49"/>
+  <polygon fill="#EDCF91" points="23,29 41,29 32,52"/>
+  <polygon fill="#A58049" points="43,29 54,29 34,49"/>
+  <polygon fill="#192231" points="9,27 21,27 25,15 27,15 23,27 41,27 37,15 39,15 43,27 55,27 54,29 43,29 33,51 32,52 41,29 23,29 32,52 31,51 21,29 10,29"/>
+</svg>
