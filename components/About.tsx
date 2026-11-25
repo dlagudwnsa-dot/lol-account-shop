@@ -1,14 +1,11 @@
+import { CatalogLink } from './CatalogLink';
 import React from 'react';
-import Button from './Button';
 import { ArrowRight, ShieldCheck, Zap, Award, ChevronRight } from 'lucide-react';
 import { useNavigation } from '../NavigationContext';
 
 const About: React.FC = () => {
   const { navigateTo } = useNavigation();
 
-  const handleMoveToShop = () => {
-    window.open('https://xn--bp2bs0ne3dj3ao4xing.com/accounts', '_blank');
-  };
 
   const features = [
     {
@@ -23,8 +20,8 @@ const About: React.FC = () => {
     },
     {
       icon: Award,
-      title: "운영 기간 내 책임 보증",
-      desc: "구매 후 발생할 수 있는 문제에 대해 끝까지 책임집니다."
+      title: "보증 대상 상품 안내",
+      desc: "상품 상세에서 보증 대상 여부와 적용 조건을 확인할 수 있습니다."
     }
   ];
 
@@ -95,12 +92,9 @@ const About: React.FC = () => {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-center gap-6 pt-4">
-              <Button 
-                onClick={handleMoveToShop}
-                className="w-full sm:w-auto px-10 py-4 bg-[#C8AA6E] text-[#010A13] hover:bg-[#D4B982] shadow-[0_0_25px_rgba(200,170,110,0.3)] hover:shadow-[0_0_35px_rgba(200,170,110,0.5)] font-bold text-lg border-none"
-              >
-                계정 매물 보러가기
-              </Button>
+              <CatalogLink placement="about" className="inline-flex items-center justify-center gap-2 relative px-8 py-3 font-serif font-bold uppercase tracking-wider transition-all duration-300 group clip-path-hextech w-full sm:w-auto px-10 py-4 bg-[#C8AA6E] text-[#010A13] hover:bg-[#D4B982] shadow-[0_0_25px_rgba(200,170,110,0.3)] hover:shadow-[0_0_35px_rgba(200,170,110,0.5)] font-bold text-lg border-none">
+                롤 계정 목록 보기
+              </CatalogLink>
               
               <button 
                 onClick={() => navigateTo('guide')}

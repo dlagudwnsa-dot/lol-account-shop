@@ -26,7 +26,7 @@ export const siteOrigin = 'https://xn--bp2bs0ne3dj3ao4xing.shop';
 export const pageMeta: Record<Page, { title: string; description: string; path: string }> = {
   home: {
     title: '롤어카운트샵 | 1대주 롤 계정 전문 거래소 | LoL Account Shop',
-    description: 'LoL Account Shop은 1대주 롤 계정만 취급하는 안전한 계정 거래 사이트입니다. 결제 즉시 아이디·비밀번호·이메일 확인 가능. 보증 계정 제공.',
+    description: '롤 계정의 서버와 현재 티어, 1대주 표시, 쇼핑몰 보증 여부를 비교하고 본점의 판매 중인 롤 계정 목록을 확인하세요.',
     path: '/'
   },
   guide: {
@@ -51,7 +51,7 @@ export const pageMeta: Record<Page, { title: string; description: string; path: 
   },
   guarantee: {
     title: '보증 계정 안내 | 1대주 검증 및 운영 보증 - LoL Account Shop',
-    description: 'LoL Account Shop의 보증 계정은 운영자가 직접 매입하고 검증한 1대주 계정으로, 운영 기간 동안 안전한 이용을 보증합니다.',
+    description: '쇼핑몰 보증 대상으로 표시된 롤 계정을 살펴보고 구매 전 상품 상세와 본점 환불 안내에서 보증 기간과 적용 조건을 확인하세요.',
     path: '/guarantee-account'
   },
   'private-trade': {

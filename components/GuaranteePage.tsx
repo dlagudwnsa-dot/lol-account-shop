@@ -1,6 +1,6 @@
+import { CatalogLink } from './CatalogLink';
 import React from 'react';
 import { ShieldCheck, Check, ArrowLeft } from 'lucide-react';
-import Button from './Button';
 import { useNavigation } from '../NavigationContext';
 
 const GuaranteePage: React.FC = () => {
@@ -52,7 +52,7 @@ const GuaranteePage: React.FC = () => {
                    <ul className="pl-4 space-y-3">
                       <li className="flex items-start gap-3">
                          <Check className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-1" />
-                         <span><strong>운영 기간 보증:</strong> 서비스 운영 기간 동안 계정 회수 시 100% 환불 또는 동급 계정 교환을 보증합니다.</span>
+                         <span><strong>보증 대상과 범위</strong>는 결제 전 상품 상세와 <a className="underline" href="https://xn--bp2bs0ne3dj3ao4xing.com/refund-policy">본점 환불·보증 안내</a>에서 확인해 주세요. 이미 구매한 상품은 구매 당시 안내된 조건을 기준으로 문의해 주세요.</span>
                       </li>
                       <li className="flex items-start gap-3">
                          <Check className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-1" />
@@ -79,9 +79,9 @@ const GuaranteePage: React.FC = () => {
           </div>
 
           <div className="mt-12 text-center">
-             <Button onClick={() => window.open('https://xn--bp2bs0ne3dj3ao4xing.com/accounts', '_blank')} className="bg-[#C8AA6E] text-black border-none hover:bg-[#D4B982]">
+             <CatalogLink placement="guarantee" className="inline-flex items-center justify-center gap-2 relative px-8 py-3 font-serif font-bold uppercase tracking-wider transition-all duration-300 group clip-path-hextech bg-[#C8AA6E] text-black border-none hover:bg-[#D4B982]">
                보증 계정 매물 확인하기
-             </Button>
+             </CatalogLink>
           </div>
        </div>
     </div>

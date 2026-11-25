@@ -1,3 +1,4 @@
+import { CatalogLink } from './CatalogLink';
 import React from 'react';
 import { UserPlus, CreditCard, Search, ShoppingCart, FileText, ArrowRight, Home, MessageCircle } from 'lucide-react';
 import Button from './Button';
@@ -114,9 +115,9 @@ const GuidePage: React.FC = () => {
               홈으로 돌아가기
             </Button>
             
-            <Button onClick={() => window.open('https://xn--bp2bs0ne3dj3ao4xing.com/accounts', '_blank')} className="w-full md:w-auto min-w-[200px] bg-[#C8AA6E] text-black border-none hover:bg-[#D4B982] shadow-[0_0_20px_rgba(200,170,110,0.3)]">
-              계정 매물 보러가기
-            </Button>
+            <CatalogLink placement="guide" className="inline-flex items-center justify-center gap-2 relative px-8 py-3 font-serif font-bold uppercase tracking-wider transition-all duration-300 group clip-path-hextech w-full md:w-auto min-w-[200px] bg-[#C8AA6E] text-black border-none hover:bg-[#D4B982] shadow-[0_0_20px_rgba(200,170,110,0.3)]">
+              롤 계정 목록 보기
+            </CatalogLink>
 
             <Button onClick={() => navigateTo('support')} variant="secondary" className="w-full md:w-auto min-w-[200px]">
               <MessageCircle className="w-4 h-4 mr-2" />

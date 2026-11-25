@@ -53,7 +53,7 @@ const PrivateTradePage: React.FC = () => {
                       <div className="flex items-start gap-3 bg-amber-900/20 p-4 rounded border border-amber-500/20">
                          <AlertTriangle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-1" />
                          <span className="text-sm text-amber-100/80">
-                            <strong>보증 제한:</strong> 개인 거래 계정은 LoL Account Shop의 '운영 기간 보증' 대상이 아닙니다. 
+                            <strong>보증 제한:</strong> 개인 거래 계정은 쇼핑몰 보증 대상에 포함되지 않습니다. 
                             회수 사고 발생 시 판매자와 직접 연락하여 해결해야 하며, 사이트 차원의 보상은 제한적일 수 있습니다.
                          </span>
                       </div>
