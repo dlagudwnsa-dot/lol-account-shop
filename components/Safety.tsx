@@ -22,18 +22,18 @@ const SafetyPolicy: React.FC = () => {
     },
     {
       icon: Shield,
-      title: "운영 기간 보증 프로그램 (Operating Warranty)",
+      title: "보증 대상과 적용 조건",
       content: (
         <>
-          <p className="mb-2">서비스 운영 중 발생하는 문제에 대해 최대한 책임 있는 보증을 제공합니다.</p>
-          <p>운영 종료 이후에도, 가능한 범위 내에서 합리적인 지원을 제공할 것을 약속드립니다. "운영 기간 내 동일한 보증 정책"이 유지됩니다.</p>
+          <p className="mb-2">현재 판매 상품의 보증 대상 여부는 본점 상품 상세에 표시됩니다.</p>
+          <p>보증 기간과 처리 범위는 구매 당시 상품에 안내된 조건을 확인해 주세요.</p>
         </>
       )
     },
     {
       icon: FileCheck,
       title: "보증 계정이란? (Warranty Account)",
-      content: "보증 계정은 관리자의 엄격한 검수를 통해 직접 매입·업로드된 상품으로, 서비스 운영 기간 동안 지속적인 보증이 제공되는 계정입니다. 안정성을 최우선으로 생각하는 고객님께 추천드립니다."
+      content: "보증 계정은 관리자의 엄격한 검수를 통해 직접 매입·업로드된 상품으로, 상품 상세에 쇼핑몰 보증 대상으로 표시되는 계정입니다."
     }
   ];
 
@@ -129,7 +129,7 @@ const SafetyPolicy: React.FC = () => {
                  운영자가 직접 매입하고 검증한 계정으로, 검증·보증·사후 대응이 모두 포함된 프리미엄 상품입니다.
                </p>
                <ul className="space-y-2 text-xs text-gray-300">
-                 <li className="flex items-center gap-2"><Check className="w-3 h-3 text-emerald-400 shrink-0" /> 운영 기간 내 보증</li>
+                 <li className="flex items-center gap-2"><Check className="w-3 h-3 text-emerald-400 shrink-0" /> 상품별 보증 적용</li>
                  <li className="flex items-center gap-2"><Check className="w-3 h-3 text-emerald-400 shrink-0" /> 운영자 직접 대응</li>
                  <li className="flex items-center gap-2"><Check className="w-3 h-3 text-emerald-400 shrink-0" /> 1대주 검증 완료</li>
                </ul>

@@ -1,3 +1,4 @@
+import { CatalogLink } from './CatalogLink';
 import React from 'react';
 import Button from './Button';
 import { ArrowRight, ShieldCheck, Zap, UserCheck, MessageCircle, Star } from 'lucide-react';
@@ -6,9 +7,6 @@ import { useNavigation } from '../NavigationContext';
 const Hero: React.FC = () => {
   const { navigateTo } = useNavigation();
 
-  const handleScrollToShop = () => {
-    window.open('https://xn--bp2bs0ne3dj3ao4xing.com/accounts', '_blank');
-  };
 
   return (
     // Mobile: min-h-screen with h-auto to allow scrolling if content overflows. 
@@ -88,16 +86,15 @@ const Hero: React.FC = () => {
           
           {/* Subtitle */}
           <p className="text-base sm:text-lg md:text-xl text-gray-100 font-light leading-relaxed max-w-lg select-none drop-shadow-[0_2px_4px_rgba(0,0,0,1)] bg-black/20 p-2 rounded-lg backdrop-blur-[2px]">
-             <strong className="text-white">LoL Account Shop</strong>은 오직 <span className="text-lol-blue font-medium shadow-black drop-shadow-md">100% 본인 인증 해제</span>된<br className="hidden md:block" />
-             클린 계정만을 취급합니다. 마법 같은 거래 경험을 시작하세요.
+             구매할 롤 계정의 <strong className="text-white">현재 티어와 서버</strong>를 먼저 고르세요. 본점 상품 상세에서 보유 스킨, 이용 제한, 보증 대상 여부를 확인할 수 있습니다.
           </p>
 
           {/* USP Badges - Grid adjusted for mobile to prevent overflow */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 py-2 select-none pointer-events-auto">
             {[
-              { icon: ShieldCheck, text: "1대주 100% 보장", color: "text-emerald-400" },
+              { icon: ShieldCheck, text: "상품별 1대주 표시", color: "text-emerald-400" },
               { icon: Zap, text: "결제 즉시 자동 인도", color: "text-yellow-400" },
-              { icon: UserCheck, text: "운영 기간 내 보증", color: "text-blue-400" },
+              { icon: UserCheck, text: "보증 대상 확인", color: "text-blue-400" },
               { icon: MessageCircle, text: "운영자 직접 응대", color: "text-pink-400" },
             ].map((usp, idx) => (
               <div key={idx} className="flex items-center gap-2 bg-[#091428]/80 border border-white/10 rounded-lg px-3 py-2 backdrop-blur-md shadow-lg hover:bg-[#091428] transition-colors group">
@@ -109,13 +106,9 @@ const Hero: React.FC = () => {
 
           {/* Buttons - Full width on mobile, proper stacking */}
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4 pointer-events-auto w-full sm:w-auto pb-4">
-            <Button 
-              onClick={handleScrollToShop} 
-              fullWidth
-              className="text-base md:text-lg px-10 py-4 bg-[#C8AA6E] text-black border-none hover:bg-[#D4B982] shadow-[0_0_30px_rgba(200,170,110,0.3)] hover:shadow-[0_0_50px_rgba(200,170,110,0.5)] font-black w-full sm:w-auto"
-            >
-              계정 매물 보러가기 <ArrowRight className="w-5 h-5 ml-1" />
-            </Button>
+            <CatalogLink placement="hero" className="inline-flex items-center justify-center gap-2 relative px-8 py-3 font-serif font-bold uppercase tracking-wider transition-all duration-300 group clip-path-hextech text-base md:text-lg px-10 py-4 bg-[#C8AA6E] text-black border-none hover:bg-[#D4B982] shadow-[0_0_30px_rgba(200,170,110,0.3)] hover:shadow-[0_0_50px_rgba(200,170,110,0.5)] font-black w-full sm:w-auto">
+              롤 계정 목록 보기 <ArrowRight className="w-5 h-5 ml-1" />
+            </CatalogLink>
             <Button 
               onClick={() => navigateTo('guide')} 
               variant="outline" 

@@ -1,6 +1,7 @@
+import { catalogUrl } from './CatalogLink';
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Menu, X, Gem } from 'lucide-react';
-import { useNavigation, Page } from '../NavigationContext';
+import { useNavigation, Page, pageMeta } from '../NavigationContext';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,19 +18,10 @@ const Header: React.FC = () => {
 
   const navLinks: { name: string; page?: Page; url?: string; isExternal: boolean }[] = [
     { name: '홈', page: 'home', isExternal: false },
-    { name: '계정 목록', url: 'https://xn--bp2bs0ne3dj3ao4xing.com/accounts', isExternal: true },
+    { name: '계정 목록', url: catalogUrl('navigation'), isExternal: true },
     { name: '이용 가이드', page: 'guide', isExternal: false },
     { name: '고객센터', page: 'support', isExternal: false },
   ];
-
-  const handleNavClick = (link: typeof navLinks[0]) => {
-    setIsMobileMenuOpen(false);
-    if (link.isExternal && link.url) {
-      window.open(link.url, '_blank');
-    } else if (link.page) {
-      navigateTo(link.page);
-    }
-  };
 
   return (
     <>
@@ -74,9 +66,12 @@ const Header: React.FC = () => {
               const isActive = !link.isExternal && currentPage === link.page;
               
               return (
-                <button 
+                <a 
                   key={link.name} 
-                  onClick={() => handleNavClick(link)}
+                  href={link.page ? pageMeta[link.page].path : link.url}
+                  target={link.isExternal ? "_blank" : undefined}
+                  rel={link.isExternal ? "noopener" : undefined}
+                  onClick={() => setIsMobileMenuOpen(false)}
                   className={`relative h-full flex items-center text-[16px] font-medium transition-all duration-300 py-2 group font-sans tracking-wide
                     ${isActive ? 'text-[#F0E6D2] font-bold' : 'text-gray-400 hover:text-white'}`}
                 >
@@ -91,16 +86,15 @@ const Header: React.FC = () => {
                   {isActive && (
                     <span className="absolute inset-0 blur-lg bg-lol-gold/10 -z-10 rounded-full"></span>
                   )}
-                </button>
+                </a>
               );
             })}
           </nav>
 
           {/* Premium CTA Button */}
           <div className="hidden md:block">
-            <button 
-               onClick={() => window.open('https://xn--bp2bs0ne3dj3ao4xing.com/accounts', '_blank')}
-               className="relative group px-1 py-1 overflow-hidden rounded-sm"
+            <a href={catalogUrl("header")} target="_blank" rel="noopener"
+               className="relative inline-block group px-1 py-1 overflow-hidden rounded-sm"
             >
               {/* Button Outer Glow/Border */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#785A28] via-[#C8AA6E] to-[#785A28] clip-path-hextech opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -108,14 +102,14 @@ const Header: React.FC = () => {
               {/* Button Content Background */}
               <div className="relative bg-[#091428] px-8 h-[48px] flex items-center clip-path-hextech transition-all duration-300 group-hover:bg-[#0E1A35]">
                  <span className="relative z-10 flex items-center gap-3 font-bold text-[14px] tracking-[0.1em] uppercase text-lol-gold group-hover:text-[#F0E6D2] transition-colors duration-300">
-                    계정 보러가기
+                    롤 계정 목록 보기
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                  </span>
               </div>
               
               {/* Inner Glow Effect on Hover */}
               <div className="absolute inset-0 bg-lol-gold/10 blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none"></div>
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -131,21 +125,23 @@ const Header: React.FC = () => {
         <div className={`md:hidden absolute top-full left-0 w-full bg-[#010A13]/98 border-b border-[#1E2328] backdrop-blur-xl transition-all duration-500 overflow-hidden shadow-2xl ${isMobileMenuOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
            <div className="p-8 flex flex-col gap-4">
              {navLinks.map((link) => (
-                <button 
+                <a 
                   key={link.name} 
-                  onClick={() => handleNavClick(link)}
+                  href={link.page ? pageMeta[link.page].path : link.url}
+                  target={link.isExternal ? "_blank" : undefined}
+                  rel={link.isExternal ? "noopener" : undefined}
+                  onClick={() => setIsMobileMenuOpen(false)}
                   className="text-gray-400 hover:text-lol-gold text-lg font-bold py-4 border-b border-white/5 hover:border-lol-gold/30 hover:pl-3 transition-all duration-300 flex items-center justify-between group w-full text-left"
                 >
                   {link.name}
                   <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300 text-lol-gold" />
-                </button>
+                </a>
             ))}
-            <button 
-              onClick={() => window.open('https://xn--bp2bs0ne3dj3ao4xing.com/accounts', '_blank')}
+            <a href={catalogUrl("header")} target="_blank" rel="noopener"
               className="w-full mt-6 h-[56px] bg-gradient-to-r from-[#C8AA6E] to-[#785A28] text-[#010A13] font-black text-sm uppercase tracking-widest clip-path-hextech hover:brightness-110 transition-all shadow-lg shadow-lol-gold/20 flex items-center justify-center gap-2"
             >
-              계정 보러가기 <ArrowRight className="w-4 h-4" />
-            </button>
+              롤 계정 목록 보기 <ArrowRight className="w-4 h-4" />
+            </a>
            </div>
         </div>
       </header>

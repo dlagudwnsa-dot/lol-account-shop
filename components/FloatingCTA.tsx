@@ -1,3 +1,4 @@
+import { CatalogLink } from './CatalogLink';
 import React, { useState } from 'react';
 import { ArrowUpRight, MessageCircle, X, Menu } from 'lucide-react';
 import { useNavigation } from '../NavigationContext';
@@ -6,9 +7,6 @@ const FloatingCTA: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { navigateTo } = useNavigation();
   
-  const handleMoveToShop = () => {
-    window.open('https://xn--bp2bs0ne3dj3ao4xing.com/accounts', '_blank');
-  };
 
   const handleSupport = () => {
     navigateTo('support');
@@ -34,15 +32,14 @@ const FloatingCTA: React.FC = () => {
         </button>
 
         {/* Shop Option (Primary) */}
-        <button 
-           onClick={handleMoveToShop}
+        <CatalogLink placement="floating"
            className="flex items-center gap-3 bg-[#091428] text-lol-gold border border-lol-gold/50 px-5 py-3 rounded-full shadow-[0_5px_20px_rgba(0,0,0,0.5)] hover:bg-[#0E1A35] transition-colors group"
         >
-           <span className="text-sm font-bold whitespace-nowrap uppercase tracking-wide">View Accounts</span>
+           <span className="text-sm font-bold whitespace-nowrap uppercase tracking-wide">롤 계정 목록</span>
            <div className="bg-lol-gold/10 p-1.5 rounded-full group-hover:bg-lol-gold/20">
              <ArrowUpRight className="w-4 h-4" />
            </div>
-        </button>
+        </CatalogLink>
       </div>
 
       {/* Main Toggle Button */}

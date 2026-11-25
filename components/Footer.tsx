@@ -1,3 +1,4 @@
+import { CatalogLink } from './CatalogLink';
 import React, { useState } from 'react';
 import { useNavigation, pageMeta } from '../NavigationContext';
 import { MessageCircle, Check, Copy } from 'lucide-react';
@@ -13,24 +14,13 @@ const Footer: React.FC = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleLinkClick = (destination: string, type: 'scroll' | 'external') => {
-    if (type === 'external') {
-      window.open(destination, '_blank');
-      return;
-    }
-
-    if (type === 'scroll') {
-      if (currentPage !== 'home') {
-        navigateTo('home');
-        // Simple delay to allow home to render before scrolling
-        setTimeout(() => {
-          const element = document.getElementById(destination);
-          element?.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      } else {
-        const element = document.getElementById(destination);
-        element?.scrollIntoView({ behavior: 'smooth' });
-      }
+  const scrollToSection = (destination: string) => {
+    const scroll = () => document.getElementById(destination)?.scrollIntoView({ behavior: 'smooth' });
+    if (currentPage === 'home') {
+      scroll();
+    } else {
+      navigateTo('home');
+      setTimeout(scroll, 100);
     }
   };
 
@@ -53,17 +43,17 @@ const Footer: React.FC = () => {
             <div>
               <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4">Service</h4>
               <ul className="space-y-2 text-xs text-gray-400">
-                <li><button onClick={() => handleLinkClick('https://xn--bp2bs0ne3dj3ao4xing.com/accounts', 'external')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">계정 구매</button></li>
+                <li><CatalogLink placement="footer" className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">롤 계정 목록</CatalogLink></li>
                 <li><a href={pageMeta['guarantee'].path} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">보증 계정 안내</a></li>
                 <li><a href={pageMeta['private-trade'].path} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">개인 거래 안내</a></li>
-                <li><button onClick={() => handleLinkClick('process-section', 'scroll')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">진행 절차</button></li>
+                <li><button onClick={() => scrollToSection('process-section')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">진행 절차</button></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4">Support</h4>
               <ul className="space-y-2 text-xs text-gray-400">
                 <li><a href={pageMeta['support'].path} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">고객센터</a></li>
-                <li><button onClick={() => handleLinkClick('faq-section', 'scroll')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">자주 묻는 질문</button></li>
+                <li><button onClick={() => scrollToSection('faq-section')} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">자주 묻는 질문</button></li>
                 <li><a href={pageMeta['guide'].path} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">이용 가이드</a></li>
                 <li><a href={pageMeta['terms'].path} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">이용 약관</a></li>
                 <li><a href={pageMeta['privacy'].path} className="hover:text-lol-gold transition-colors hover:underline underline-offset-4">개인정보처리방침</a></li>
